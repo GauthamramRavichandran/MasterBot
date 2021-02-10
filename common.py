@@ -53,7 +53,7 @@ def start_program(path, arg):
     :param arg:
     :return:
     """
-    cmd = f'source env/bin/activate; {arg}'
+    cmd = f'source env/bin/activate; nohup {arg} &'
     subprocess.Popen(cmd, shell=True,
                      cwd=path,
                      executable='/bin/bash')
