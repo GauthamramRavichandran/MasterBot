@@ -1,7 +1,7 @@
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, TypeHandler
 
-from callback import start, restart, get_all, block_access, help
+from callback import start, restart, get_all, block_access, helps
 from CONFIG import CONFIG
 
 
@@ -12,7 +12,7 @@ def main():
     dispatcher.add_handler(CommandHandler("start", start), group=1)
     dispatcher.add_handler(CommandHandler("restart", restart), group=1)
     dispatcher.add_handler(CommandHandler("get", get_all), group=1)
-    dispatcher.add_handler(CommandHandler("help", help), group=1)
+    dispatcher.add_handler(CommandHandler("help", helps), group=1)
 
     if CONFIG.PORT_NUM != 0:
         updater.start_webhook(

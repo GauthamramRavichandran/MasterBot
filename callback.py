@@ -15,10 +15,10 @@ from CONFIG import CONFIG
 def block_access(update: Update, context: CallbackContext):
     if update.effective_user.id not in CONFIG.ADMINS:
         update.effective_message.reply_html(
-            f"""
+            """
 Hello there, non-admin Human!
     I'm the MasterBot. I help admin in managing bots/programs running in the server.
-    
+
 <b>What do you do?</b>
     For starters, I help in pulling the latest update of a repo to server and restarting that appropriate bot.
 """,
@@ -40,7 +40,7 @@ def start(update: Update, context: CallbackContext):
     update.effective_message.reply_html(
         """
 Hello there, Admin!
-    I'm the MasterBot. You already know what I do, hit /help for list of commands.    
+    I'm the MasterBot. You already know what I do, hit /help for list of commands.
 """
     )
 
@@ -94,9 +94,9 @@ def restart(update: Update, context: CallbackContext):
         )
 
 
-def help(update: Update, context: CallbackContext):
+def helps(update: Update, context: CallbackContext):
     update.effective_message.reply_html(
-        f"""
+        """
 HELP
 
 1. /get - Returns all the py programs running on server
