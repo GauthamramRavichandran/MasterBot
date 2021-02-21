@@ -36,7 +36,7 @@ Hello there, non-admin Human!
         raise DispatcherHandlerStop
 
 
-def start(update: Update, context: CallbackContext):
+def start_command(update: Update, context: CallbackContext):
     update.effective_message.reply_html(
         """
 Hello there, Admin!
@@ -55,7 +55,7 @@ def get_all(update: Update, context: CallbackContext):
     update.effective_message.reply_html(to_send)
 
 
-def restart(update: Update, context: CallbackContext):
+def restart_command(update: Update, context: CallbackContext):
     if context.args:
         status_msg = update.effective_message.reply_html(
             "Trying to restart the process..."
@@ -94,7 +94,7 @@ def restart(update: Update, context: CallbackContext):
         )
 
 
-def helps(update: Update, context: CallbackContext):
+def help_command(update: Update, context: CallbackContext):
     update.effective_message.reply_html(
         """
 HELP
