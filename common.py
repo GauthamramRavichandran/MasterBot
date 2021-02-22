@@ -6,8 +6,9 @@ import os
 import signal
 
 
-def kill_proc_tree(pid, sig=signal.SIGTERM, include_parent=True,
-                   timeout=None, on_terminate=None):
+def kill_proc_tree(
+    pid, sig=signal.SIGTERM, include_parent=True, timeout=None, on_terminate=None
+):
     """Kill a process tree (including grandchildren) with signal
     "sig" and return a (gone, still_alive) tuple.
     "on_terminate", if specified, is a callback function which is
@@ -21,15 +22,14 @@ def kill_proc_tree(pid, sig=signal.SIGTERM, include_parent=True,
         children.append(parent)
     for p in children:
         p.send_signal(sig)
-    gone, alive = psutil.wait_procs(children, timeout=timeout,
-                                    callback=on_terminate)
+    gone, alive = psutil.wait_procs(children, timeout=timeout, callback=on_terminate)
     return (gone, alive)
 
 
-def get_list_of_py(only_alias = False) -> list:
+def get_list_of_py(only_alias=False) -> list:
     process_list: [psutil.Process] = psutil.process_iter()
     for p in process_list:
-        if p.name().startswith('python'):
+        if p.name().startswith("python"):
             if only_alias:
                 try:
                     yield p.cmdline()[2]
@@ -53,10 +53,8 @@ def start_program(path, arg):
     :param arg:
     :return:
     """
-    cmd = f'source env/bin/activate; nohup {arg} &'
-    subprocess.Popen(cmd, shell=True,
-                     cwd=path,
-                     executable='/bin/bash')
+    cmd = f"source env/bin/activate; nohup {arg} &"
+    subprocess.Popen(cmd, shell=True, cwd=path, executable="/bin/bash")
 
 
 def update_repo(path):
@@ -66,8 +64,7 @@ def update_repo(path):
     :param path:
     :return:
     """
-    cmd = 'git pull'
-    return subprocess.check_output(cmd, shell=True,
-                                   cwd=path,
-                                   executable='/bin/bash',
-                                   universal_newlines=True)
+    cmd = "git pull"
+    return subprocess.check_output(
+        cmd, shell=True, cwd=path, executable="/bin/bash", universal_newlines=True
+    )
