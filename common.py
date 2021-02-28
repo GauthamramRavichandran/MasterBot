@@ -65,12 +65,12 @@ def start_program(path, arg):
 def str_uptime(secs: float):
     if secs > 217728000:  # 1 year in secs
         return datetime.fromtimestamp(secs).strftime(
-            "%Yyr %mmon %ddays | %Hhr %Mmin %Ssec"
+            "%YY %mM %dd | %Hh %Mm %Ss"
         )
-    elif secs > 18144000:  # 1 month in secs
-        return datetime.fromtimestamp(secs).strftime("%mmon %ddays | %Hhr %Mmin %Ssec")
+    elif secs > 2629746:  # 1 month in secs
+        return datetime.fromtimestamp(secs).strftime("%mM %dd | %Hh %Mm %Ss")
     else:  # 1 day in secs
-        return datetime.fromtimestamp(secs).strftime("%Hhr %Mmin %Ssec")
+        return datetime.fromtimestamp(secs).strftime("%dd | %Hh %Mm %Ss")
 
 
 def update_repo(path):

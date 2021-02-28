@@ -13,7 +13,7 @@ class Stats:
     @staticmethod
     def command(update: Update, context: CallbackContext):
         stat_msg = f"""
-<u>Server Stats</u>
+<b>Server Stats</b>
 
     <b>CPU Percent</b>: {psutil.cpu_percent(interval=0.1)}%
     <b>RAM</b>: {psutil.virtual_memory().percent}%
