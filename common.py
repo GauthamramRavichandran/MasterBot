@@ -1,9 +1,14 @@
+from datetime import datetime
 import subprocess
 
 import psutil
 from psutil import Process
 import os
 import signal
+
+
+def convert_to_GB(input_bytes):
+    return round(input_bytes / (1024 * 1024 * 1024), 1)
 
 
 def kill_proc_tree(
@@ -55,6 +60,17 @@ def start_program(path, arg):
     """
     cmd = f"source env/bin/activate; nohup {arg} &"
     subprocess.Popen(cmd, shell=True, cwd=path, executable="/bin/bash")
+
+
+def str_uptime(secs: float):
+    if secs > 217728000:  # 1 year in secs
+        return datetime.fromtimestamp(secs).strftime(
+            "%Yyr %mmon %ddays | %Hhr %Mmin %Ssec"
+        )
+    elif secs > 18144000:  # 1 month in secs
+        return datetime.fromtimestamp(secs).strftime("%mmon %ddays | %Hhr %Mmin %Ssec")
+    else:  # 1 day in secs
+        return datetime.fromtimestamp(secs).strftime("%Hhr %Mmin %Ssec")
 
 
 def update_repo(path):

@@ -1,18 +1,24 @@
 from telegram import Update
-from telegram.ext import Updater, CommandHandler, TypeHandler
+from telegram.ext import Updater, CommandHandler, TypeHandler, CallbackQueryHandler
 
-from callback import start_command, restart_command, get_all, block_access, help_command
-from CONFIG import CONFIG
+from callback import Misc, Restart, Stats
+from const.CONFIG import CONFIG
 
 
 def main():
     updater = Updater(CONFIG.BOTTOKEN)
     dispatcher = updater.dispatcher
-    dispatcher.add_handler(TypeHandler(type=Update, callback=block_access), group=0)
-    dispatcher.add_handler(CommandHandler("start", start_command), group=1)
-    dispatcher.add_handler(CommandHandler("restart", restart_command), group=1)
-    dispatcher.add_handler(CommandHandler("get", get_all), group=1)
-    dispatcher.add_handler(CommandHandler("help", help_command), group=1)
+    dispatcher.add_handler(
+        TypeHandler(type=Update, callback=Misc.block_access), group=0
+    )
+    dispatcher.add_handler(CommandHandler("start", Misc.start_command), group=1)
+    dispatcher.add_handler(CommandHandler("restart", Restart.command), group=1)
+    dispatcher.add_handler(CommandHandler("get", Misc.get_all), group=1)
+    dispatcher.add_handler(CommandHandler("help", Misc.help_command), group=1)
+    dispatcher.add_handler(CommandHandler("stats", Stats.command), group=1)
+    dispatcher.add_handler(
+        CallbackQueryHandler(Stats.command, pattern="refresh"), group=1
+    )
 
     if CONFIG.PORT_NUM != 0:
         updater.start_webhook(
