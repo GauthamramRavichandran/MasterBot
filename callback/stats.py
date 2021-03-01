@@ -40,16 +40,20 @@ class Stats:
     def detail_command(update: Update, context: CallbackContext):
         to_send = """
 <b>Detailed stats of <pre>py</pre> processes</b>
-<pre> Alias   Threads   Memory Percent</pre>
+<pre> Alias   Threads   Memory Usage</pre>
 
-    """
-        for p in get_list_of_py():
+"""
+        for index, p in enumerate(get_list_of_py(), start=1):
             # Assume the last arg is Alias
-            to_send += (
+            to_send += f"{index}" + (
                 "<pre>"
                 + " ".join(
-                    str(arg)
-                    for arg in (p.cmdline()[-1], p.num_threads(), p.memory_percent())
+                    arg
+                    for arg in (
+                        p.cmdline()[-1],
+                        str(p.num_threads()),
+                        str(round(p.memory_percent(), 2)) + "%",
+                    )
                 )
                 + "</pre>\n"
             )
