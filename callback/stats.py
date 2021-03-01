@@ -45,7 +45,7 @@ class Stats:
 """
         for index, p in enumerate(get_list_of_py(), start=1):
             # Assume the last arg is Alias
-            to_send += f"{index}" + (
+            to_send += f"{index}. " + (
                 "<pre>"
                 + " ".join(
                     arg
