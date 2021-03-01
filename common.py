@@ -31,13 +31,13 @@ def kill_proc_tree(
     return (gone, alive)
 
 
-def get_list_of_py(only_alias=False) -> list:
+def get_list_of_py(only_alias=False) -> [psutil.Process, str]:
     process_list: [psutil.Process] = psutil.process_iter()
     for p in process_list:
         if p.name().startswith("python"):
             if only_alias:
                 try:
-                    yield p.cmdline()[2]
+                    yield p.cmdline()[-1]
                 except IndexError:
                     continue
             else:
@@ -64,9 +64,7 @@ def start_program(path, arg):
 
 def str_uptime(secs: float):
     if secs > 217728000:  # 1 year in secs
-        return datetime.fromtimestamp(secs).strftime(
-            "%YY %mM %dd | %Hh %Mm %Ss"
-        )
+        return datetime.fromtimestamp(secs).strftime("%YY %mM %dd | %Hh %Mm %Ss")
     elif secs > 2629746:  # 1 month in secs
         return datetime.fromtimestamp(secs).strftime("%mM %dd | %Hh %Mm %Ss")
     else:  # 1 day in secs

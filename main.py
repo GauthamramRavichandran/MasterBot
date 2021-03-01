@@ -16,6 +16,7 @@ def main():
     dispatcher.add_handler(CommandHandler("get", Misc.get_all), group=1)
     dispatcher.add_handler(CommandHandler("help", Misc.help_command), group=1)
     dispatcher.add_handler(CommandHandler("stats", Stats.command), group=1)
+    dispatcher.add_handler(CommandHandler("detail_stats", Stats.detail_command), group=1)
     dispatcher.add_handler(
         CallbackQueryHandler(Stats.command, pattern="refresh"), group=1
     )

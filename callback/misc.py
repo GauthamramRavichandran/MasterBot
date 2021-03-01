@@ -39,15 +39,17 @@ Hello there, Admin!
     1. /get - Returns all the py programs running on server
     2. /restart alias - Stops the program > Fetches the latest update from repo > Starts the program again
     3. /stats - Gets statistics of CPU/Memory usages
+    4. /detail_stats - Gets detailed statistics of all processes
     """
         )
 
     @staticmethod
     def get_all(update: Update, context: CallbackContext):
         to_send = """
-    <b>List of py processes running</b>
-    <pre>cmd     filename    alias</pre>
-    """
+<b>List of py processes running</b>
+<pre>cmd     filename    alias</pre>
+
+"""
         for p in get_list_of_py():
             to_send += "<pre>" + " ".join(arg for arg in p.cmdline()) + "</pre>\n"
         update.effective_message.reply_html(to_send)
