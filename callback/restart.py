@@ -13,7 +13,7 @@ class Restart:
 
         elif update.callback_query is not None:
             alias = update.callback_query.data.split("_", maxsplit=1)[-1]
-            update.callback_query.answer("Restarting...")
+            update.effective_message.delete()  # keep the chat clean
         else:
             return update.effective_message.reply_html(
                 "<b>Format:</b> /restart alias \nUse /get to get all running py programs"
@@ -44,12 +44,19 @@ Trying to start the bot again...""",
                 )
                 start_program(path=path, arg=" ".join(arg for arg in args))
                 status_msg.edit_text(
-                    f"{status_msg.text_html}\nStarted the bot", parse_mode="HTML",
-                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Restart again",
-                                                                             callback_data=f"restart_{alias}")]])
+                    f"{status_msg.text_html}\nStarted the bot",
+                    parse_mode="HTML",
+                    reply_markup=InlineKeyboardMarkup(
+                        [
+                            [
+                                InlineKeyboardButton(
+                                    f"Restart {alias}", callback_data=f"restart_{alias}"
+                                )
+                            ]
+                        ]
+                    ),
                 )
             except psutil.NoSuchProcess:
                 update.effective_message.reply_html(
                     "Looks like someone already killed it!"
                 )
-
