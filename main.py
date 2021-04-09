@@ -13,6 +13,9 @@ def main():
     )
     dispatcher.add_handler(CommandHandler("start", Misc.start_command), group=1)
     dispatcher.add_handler(CommandHandler("restart", Restart.command), group=1)
+    dispatcher.add_handler(
+        CallbackQueryHandler(Restart.command, pattern="^restart"), group=1
+    )
     dispatcher.add_handler(CommandHandler("get", Misc.get_all), group=1)
     dispatcher.add_handler(CommandHandler("help", Misc.help_command), group=1)
     dispatcher.add_handler(CommandHandler("stats", Stats.command), group=1)
