@@ -1,13 +1,18 @@
+from datetime import timedelta
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, TypeHandler, CallbackQueryHandler
 
-from callback import Misc, Restart, Stats
+from callback import Jobs, Misc, Restart, Stats
 from const.CONFIG import CONFIG
 
 
 def main():
     updater = Updater(CONFIG.BOTTOKEN)
     dispatcher = updater.dispatcher
+    job_q = updater.job_queue
+    job_q.run_repeating(
+        callback=Jobs.supervisor, interval=timedelta(minutes=5), first=5
+    )
     dispatcher.add_handler(
         TypeHandler(type=Update, callback=Misc.block_access), group=0
     )
@@ -19,7 +24,9 @@ def main():
     dispatcher.add_handler(CommandHandler("get", Misc.get_all), group=1)
     dispatcher.add_handler(CommandHandler("help", Misc.help_command), group=1)
     dispatcher.add_handler(CommandHandler("stats", Stats.command), group=1)
-    dispatcher.add_handler(CommandHandler("detail_stats", Stats.detail_command), group=1)
+    dispatcher.add_handler(
+        CommandHandler("detail_stats", Stats.detail_command), group=1
+    )
     dispatcher.add_handler(
         CallbackQueryHandler(Stats.command, pattern="refresh"), group=1
     )
