@@ -1,3 +1,4 @@
+from html import escape
 from telegram.ext import CallbackContext
 
 from common import get_list_of_py
@@ -26,13 +27,18 @@ class Jobs:
                 context.bot_data["prev_bot_list"] - context.bot_data["current_bot_list"]
             )
             if failed_bots:
-                failed_bots_list = "\n\t".join(bot for bot in failed_bots)
+                failed_bots_list = "\n\t".join(escape(bot) for bot in failed_bots)
                 to_send = (
-                    f"Attention, Master!"
+                    f"<b>Attention, Master!</b>"
                     f"\nSome bots aren't running now or have escaped our hold, (compared to the prev. list)"
+                    f"\n"
+                    f"\n<pre>Alias</pre>"
+                    f"\n"
                     f"\n\t{failed_bots_list}"
                     f"\n"
-                    f"\nI don't have permission to start the bot, please login to the VPS at your convenience"
+                    f"\nI don't have the permission to start bots, please login to the VPS at your convenience"
                 )
                 for admin in CONFIG.ADMINS:
-                    context.bot.send_message(chat_id=admin, text=to_send)
+                    try:
+                        context.bot.send_message(chat_id=admin, text=to_send, parse_mode="HTML")
+                    except: pass
