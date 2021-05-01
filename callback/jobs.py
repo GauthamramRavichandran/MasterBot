@@ -1,8 +1,12 @@
 from html import escape
+import logging
 from telegram.ext import CallbackContext
+from telegram.error import Unauthorized, BadRequest
 
 from common import get_list_of_py
 from const import CONFIG
+
+logger = logging.getLogger(__name__)
 
 
 class Jobs:
@@ -41,4 +45,6 @@ class Jobs:
                 for admin in CONFIG.ADMINS:
                     try:
                         context.bot.send_message(chat_id=admin, text=to_send, parse_mode="HTML")
-                    except: pass
+                    except (Unauthorized, BadRequest): pass
+                    except Exception as e:
+                        logger.exception(f"{e}")

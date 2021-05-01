@@ -1,9 +1,15 @@
 from datetime import timedelta
+import logging
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, TypeHandler, CallbackQueryHandler
 
 from callback import Jobs, Misc, Restart, Stats
 from const.CONFIG import CONFIG
+
+logging.basicConfig(format='%(asctime)s - %(name)s - %(message)s',
+                    level=logging.INFO, filename="logs.log")
+
+logger = logging.getLogger(__name__)
 
 
 def main():
