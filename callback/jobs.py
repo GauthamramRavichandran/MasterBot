@@ -1,5 +1,6 @@
 from html import escape
 import logging
+
 from telegram.ext import CallbackContext
 from telegram.error import Unauthorized, BadRequest
 
@@ -13,7 +14,7 @@ class Jobs:
     @staticmethod
     def supervisor(context: CallbackContext):
         if "prev_bot_list" not in context.bot_data:
-            # load "prev_bot_list" for the first time
+            # load list of running bots for the first time
             context.bot_data["prev_bot_list"] = {
                 bot for bot in get_list_of_py(only_alias=True)
             }
@@ -34,7 +35,7 @@ class Jobs:
                 failed_bots_list = "\n\t".join(escape(bot) for bot in failed_bots)
                 to_send = (
                     f"<b>Attention, Master!</b>"
-                    f"\nSome bots aren't running now or have escaped our hold, (compared to the prev. list)"
+                    f"\nSome bots aren't running now and have escaped my hold, (compared to my previous list)"
                     f"\n"
                     f"\n<pre>Alias</pre>"
                     f"\n"

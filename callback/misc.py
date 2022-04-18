@@ -12,10 +12,12 @@ class Misc:
             update.effective_message.reply_html(
                 """
 Hello there, non-admin Human!
-    I'm the MasterBot. I help admin in managing bots/programs running in the server.
+    I'm the MasterBot. I help admin in managing bots/programs running in your server.
 
-<b>What do you do?</b>
-    For starters, I help in pulling the latest update of a repo to server and restarting that appropriate bot.
+<b>What can I do?</b>
+    1. I pull the latest update of a repo to server and restart that appropriate bot.
+    2. Monitor the server statistics
+    3. Notify you about the failed/stopped bots
     """,
                 reply_markup=KeyboardMK.repo(),
             )
