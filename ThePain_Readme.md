@@ -84,7 +84,7 @@ If you started your bot with "`python3 main.py AnyName`", you can restart it by 
 
 to your bot on telegram.
 
-Except yoou shouldnt use a name more than once, you can use everything as name.
+Except you shouldnt use a name more than once, you can use everything as name.
 
 You can list all commands by sending "`/help`" to your bot on telegram.
 
@@ -108,7 +108,7 @@ THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. YOU MAY USE THIS
 **Please feel free to raise an issue here if you have any queries**
 
 
-### In addition to "What's this?":
+## In addition to "What's this?":
 Mainly i rewrote that to help other people that may have similar problems like me.
 The second reason is:
 IF I FORGET HOW THIS WORKS AGAIN; I DONT NEED TO ASK AGAIN AHAHAH
