@@ -57,10 +57,12 @@ Control bots on your server. Easiest way to manage multiple bots. _Works for any
 2.2. On telegram, you can text you bot private with `/get`to see all running .py files. And if you check the list
 3. The list should be like this:
 
-`List of py processes running
+```
+List of py processes running
 cmd     filename    alias
 
-python3 main.py AnyName`
+python3 main.py AnyName
+```
 
 it could be longer but this is what we are searching for.
 
