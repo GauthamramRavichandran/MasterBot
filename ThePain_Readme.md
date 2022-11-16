@@ -38,17 +38,22 @@ Control bots on your server. Easiest way to manage multiple bots. _Works for any
 1.1. Create a folder for your bot
 
     `mkdir my_bot_folder`
+    
 1.2. Make a virtualenv called "env" for your bot in your newly created folder
 
     `virtualenv env'
+    
 1.2.1 Activate it
 
     `source env/bin/activate`
+    
 1.3. clone your bot into the folder
 
-    `git clone {repo}
+    `git clone {repo}`
 2. The last argument should be the alias (only alias will be used, not the name of the .py file)
+
 2.1. For example if you would start your bot with "`python3 main.py`" you should instead start it with "`python3 main.py AnyName`"
+
 2.2. On telegram, you can text you bot private with `/get`to see all running .py files. And if you check the list
 3. The list should be like this:
 
@@ -56,14 +61,20 @@ Control bots on your server. Easiest way to manage multiple bots. _Works for any
 cmd     filename    alias
 
 python3 main.py AnyName`
-it could be longerm but this is what we are searching for.
+
+it could be longer but this is what we are searching for.
+
 If you see this, everything shout work fine
 
 ### Important Commands
 The most important commands are:
+
 `/get` - List all running py files
+
 `/restart {alias}`- Restart you py file
+
 If you started your bot with "`python3 main.py AnyName`", you can restart it by sending "/restart AnyName" to your bot on telegram.
+
 Except yoou shouldnt use a name more than once, you can use everything as name.
 
 You can list all commands by sending "`/help`" to your bot on telegram.
@@ -86,6 +97,7 @@ THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. YOU MAY USE THIS
 
 
 **Please feel free to raise an issue here if you have any queries**
+
 
 ### In addition to "What's this?":
 Mainly i rewrote that to help other people that may have similar problems like me.
