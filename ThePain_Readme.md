@@ -78,7 +78,11 @@ The most important commands are:
 
 `/restart {alias}`- Restart you py file
 
-If you started your bot with "`python3 main.py AnyName`", you can restart it by sending "/restart AnyName" to your bot on telegram.
+If you started your bot with "`python3 main.py AnyName`", you can restart it by sending 
+
+"`/restart AnyName`" 
+
+to your bot on telegram.
 
 Except yoou shouldnt use a name more than once, you can use everything as name.
 
