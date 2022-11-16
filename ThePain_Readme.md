@@ -15,7 +15,8 @@ Control bots on your server. Easiest way to manage multiple bots. _Works for any
 
 ### How to deploy?
 1. Clone the repo
-`git clone https://github.com/GauthamramRavichandran/MasterBot`
+
+   `git clone https://github.com/GauthamramRavichandran/MasterBot`
 2. Change directory 
 
    `cd MasterBot`
@@ -35,6 +36,7 @@ Control bots on your server. Easiest way to manage multiple bots. _Works for any
 
 ### Assumptions
 1. All the bots should have a separate virtualenv (called env) within its folder
+
 1.1. Create a folder for your bot
 
     `mkdir my_bot_folder`
@@ -52,9 +54,10 @@ Control bots on your server. Easiest way to manage multiple bots. _Works for any
     `git clone {repo}`
 2. The last argument should be the alias (only alias will be used, not the name of the .py file)
 
-2.1. For example if you would start your bot with "`python3 main.py`" you should instead start it with "`python3 main.py AnyName`"
+2.1. For example if you would start your bot with "python3 main.py" you should instead start it with "python3 main.py AnyName"
 
 2.2. On telegram, you can text you bot private with `/get`to see all running .py files. And if you check the list
+
 3. The list should be like this:
 
 ```
