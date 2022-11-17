@@ -24,7 +24,7 @@ Control bots on your server. Easiest way to manage multiple bots. _Works for any
 
     `pip3 install -r requirements.txt`
 
-7. Fill in the `CONFIG.py` file
+7. Fill in the `/const/CONFIG.py` file
 8. Place the `cert.pem` file if bot wants to use webhook
 9. Start the master, `python main.py`
 
@@ -49,3 +49,8 @@ THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. YOU MAY USE THIS
 
 
 **Please feel free to raise an issue here if you have any queries**
+
+
+## If you have some problems try "ThePain_Readme.md"
+
+ThePain tried to make a easier to understand how to, if you dont need that, good, not everyone can be so silly like him ;)
