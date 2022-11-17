@@ -24,9 +24,9 @@ Control bots on your server. Easiest way to manage multiple bots. _Works for any
 
     `pip3 install -r requirements.txt`
 
-7. Fill in the `CONFIG.py` file
-8. Place the `cert.pem` file if bot wants to use webhook
-9. Start the master, `python main.py`
+7. Fill in the `/const/CONFIG.py` file
+8. Place the `cert.pem` file if bot wants to use webhook method
+9. Start the master bot, `python main.py`
 
 ### Assumptions
 1. All the bots should have a separate virtualenv (called env) within its folder
