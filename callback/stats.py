@@ -19,7 +19,8 @@ class Stats:
     <b>CPU</b>: {psutil.cpu_percent(interval=0.1)}%
     <b>RAM</b>: {psutil.virtual_memory().percent}%
     <b>DISK</b>: {convert_to_GB(psutil.disk_usage('/').used)}GB of {convert_to_GB(psutil.disk_usage('/').total)}GB used
-    <b>Uptime</b>: {str_uptime(time() - psutil.boot_time())}
+    
+    <b>Running for a</b> {str_uptime(time() - psutil.boot_time())}
     <b>Booted on</b>: {datetime.fromtimestamp(psutil.boot_time()).strftime("%Y-%m-%d %H:%M:%S")}
 
     <b>Stats as of</b> {datetime.fromtimestamp(time()).strftime("%Y-%m-%d %H:%M:%S")}

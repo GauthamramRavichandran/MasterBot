@@ -1,6 +1,7 @@
 from datetime import datetime
 import subprocess
 
+from humanize import naturaldelta
 import psutil
 from psutil import Process
 import os
@@ -63,13 +64,7 @@ def start_program( path, arg ):
 
 
 def str_uptime( secs: float ):
-	if secs > 31557600:  # 1 year in secs
-		fmt = "%YY %mM %dd | %Hh %Mm"
-	elif secs > 2629746:  # 1 month in secs
-		fmt = "%mM %dd | %Hh %Mm"
-	else:  # 1 day in secs
-		fmt = "%dd | %Hh %Mm %Ss"
-	return datetime.fromtimestamp(secs).strftime(fmt)
+	return naturaldelta(secs)
 
 
 def update_repo( path ):
