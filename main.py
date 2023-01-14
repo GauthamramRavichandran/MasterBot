@@ -7,7 +7,7 @@ from telegram.ext import Updater, CommandHandler, TypeHandler, CallbackQueryHand
 from callback import Jobs, Misc, Restart, Stats
 from const.CONFIG import CONFIG
 
-logging.basicConfig(handlers=[RotatingFileHandler("./logs.log", maxBytes=1000, backupCount=4)],
+logging.basicConfig(handlers=[RotatingFileHandler("./logs.log", maxBytes=10000, backupCount=4)],
                     level=logging.ERROR,
                     format="[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s",
                     datefmt="%Y-%m-%dT%H:%M:%S", )

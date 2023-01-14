@@ -1,5 +1,5 @@
 from telegram import Update
-from telegram.ext import CallbackContext, DispatcherHandlerStop
+from telegram.ext import CallbackContext, DispatcherHandlerStop, Filters
 
 from common import get_list_of_py
 from const import CONFIG, KeyboardMK
@@ -8,6 +8,9 @@ from const import CONFIG, KeyboardMK
 class Misc:
     @staticmethod
     def block_access(update: Update, context: CallbackContext):
+        # ignore service messages/where there is no effective_message
+        if update.effective_message is None or Filters.status_update(update):
+            raise DispatcherHandlerStop
         if update.effective_user.id not in CONFIG.ADMINS:
             update.effective_message.reply_html(
                 """
