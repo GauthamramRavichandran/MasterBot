@@ -47,9 +47,9 @@ def main():
 			BotCommand("start", "start the bot"),
 			BotCommand("restart", "restart a bot/script using alias"),
 			BotCommand("get", "get all running py processes"),
-			BotCommand("stats", "get stats of the server"),
-			BotCommand("detail_stats", "get stats of the processes"),
-			BotCommand("help", "get help message"),
+			BotCommand("stats", "stats of the server"),
+			BotCommand("detail_stats", "stats of the processes"),
+			BotCommand("help", "help message"),
 			]
 		)
 	if CONFIG.PORT_NUM != 0:

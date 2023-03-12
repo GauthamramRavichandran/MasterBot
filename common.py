@@ -35,7 +35,7 @@ def kill_proc_tree(
 def get_list_of_py( only_alias=False ) -> [psutil.Process, str]:
 	process_list: [psutil.Process] = psutil.process_iter()
 	for p in process_list:
-		if p.name().startswith("python"):
+		if p.name().startswith("python") or p.name().startswith("telegram-bot-api"):
 			if only_alias:
 				try:
 					yield p.cmdline()[-1]
@@ -75,6 +75,11 @@ def update_repo( path ):
     :return:
     """
 	cmd = "git pull"
-	return subprocess.check_output(
-		cmd, shell=True, cwd=path, executable="/bin/bash", universal_newlines=True
-		)
+	try:
+		return {"exit-code": 0,
+		        "output": subprocess.check_output(
+			        cmd, shell=True, cwd=path,
+			        executable="/bin/bash", universal_newlines=True)
+		        }
+	except subprocess.CalledProcessError as e:
+		return {"exit-code": e.returncode, "output": e.stderr}

@@ -16,12 +16,13 @@ class Restart:
 			update.effective_message.delete()  # keep the chat clean
 		else:
 			return update.effective_message.reply_html(
-				"<b>Format:</b> /restart alias \nUse /get to get all running py programs"
+				"<b>Format:</b> /restart alias "
+				"\nUse /get to get all running py programs"
 				)
 
 		process = get_full_info(alias)
 		status_msg = update.effective_message.reply_html(
-			f"Trying to restart the process {alias}..."
+			f"Trying to restart the process {alias}...", quote=False
 			)
 		if process:
 			path = process.cwd()
@@ -36,12 +37,20 @@ class Restart:
 					parse_mode="HTML",
 					)
 				result = update_repo(path)
-				status_msg = status_msg.edit_text(
+
+				if result["exit-code"]!= 0:
+					status_msg = status_msg.edit_text(
 					f"""{status_msg.text_html}
-<pre>{result}</pre>"
-Trying to start the bot again...""",
-					parse_mode="HTML",
-					)
+<pre>{result['output']}</pre>
+❗️Failed to update the repo, restarting the bot as-is ...""",
+					parse_mode="HTML")
+				else:
+					status_msg = status_msg.edit_text(
+						f"""{status_msg.text_html}
+	<pre>{result}</pre>
+	Trying to start the bot again...""",
+						parse_mode="HTML",
+						)
 				start_program(path=path, arg=" ".join(arg for arg in args))
 				status_msg.edit_text(
 					f"{status_msg.text_html}\nStarted the bot",
@@ -60,3 +69,6 @@ Trying to start the bot again...""",
 				update.effective_message.reply_html(
 					"Looks like someone already killed it!"
 					)
+		else:
+			update.effective_message.reply_html(f"No process found under the alias {alias}",
+			                                    quote=False)
