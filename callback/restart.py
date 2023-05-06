@@ -47,7 +47,7 @@ class Restart:
 				else:
 					status_msg = status_msg.edit_text(
 						f"""{status_msg.text_html}
-	<pre>{result}</pre>
+	<pre>{result['output']}</pre>
 	Trying to start the bot again...""",
 						parse_mode="HTML",
 						)
