@@ -40,14 +40,14 @@ class Stats:
 	@staticmethod
 	def detail_command( update: Update, context: CallbackContext ):
 		to_send = """
-<b>Detailed stats of <pre>py</pre> processes</b>
-<pre> Alias   Threads   Memory Usage</pre>
+<b>Detailed stats of <code>py</code> processes</b>
+<code> Alias   Threads   Memory Usage</code>
 
 """
 		for index, p in enumerate(get_list_of_py(), start=1):
 			# Assume the last arg is Alias
 			to_send += f"{index}. " + (
-					"<pre>"
+					"<code>"
 					+ " ".join(
 				arg
 				for arg in (
@@ -56,6 +56,6 @@ class Stats:
 					str(round(p.memory_percent(), 2)) + "%",
 					)
 				)
-					+ "</pre>\n"
+					+ "</code>\n"
 			)
 		update.effective_message.reply_html(to_send)

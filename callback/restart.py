@@ -41,13 +41,13 @@ class Restart:
 				if result["exit-code"]!= 0:
 					status_msg = status_msg.edit_text(
 					f"""{status_msg.text_html}
-<pre>{result['output']}</pre>
+<code>{result['output']}</code>
 ❗️Failed to update the repo, restarting the bot as-is ...""",
 					parse_mode="HTML")
 				else:
 					status_msg = status_msg.edit_text(
 						f"""{status_msg.text_html}
-	<pre>{result['output']}</pre>
+	<code>{result['output']}</code>
 	Trying to start the bot again...""",
 						parse_mode="HTML",
 						)

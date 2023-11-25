@@ -52,9 +52,9 @@ Hello there, Admin!
     def get_all(update: Update, context: CallbackContext):
         to_send = """
 <b>List of py processes running</b>
-<pre>cmd     filename    alias</pre>
+<code>cmd     filename    alias</code>
 
 """
         for p in get_list_of_py():
-            to_send += "<pre>" + " ".join(arg for arg in p.cmdline()) + "</pre>\n"
+            to_send += "<code>" + " ".join(arg for arg in p.cmdline()) + "</code>\n"
         update.effective_message.reply_html(to_send)

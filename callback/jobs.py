@@ -37,7 +37,7 @@ class Jobs:
                     f"<b>Attention, Master!</b>"
                     f"\nSome bots aren't running now and have escaped my hold, (compared to my previous list)"
                     f"\n"
-                    f"\n<pre>Alias</pre>"
+                    f"\n<code>Alias</code>"
                     f"\n"
                     f"\n\t{failed_bots_list}"
                     f"\n"
